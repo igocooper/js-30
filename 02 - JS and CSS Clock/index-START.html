@@ -18,7 +18,7 @@
 
   <style>
     html {
-      background:#018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
+      background:#018DED url(https://hdqwalls.com/download/milky-way-a0-2560x1440.jpg);
       background-size:cover;
       font-family:'helvetica neue';
       text-align: center;
@@ -56,18 +56,84 @@
       transform: translateY(-3px); /* account for the height of the clock hands */
     }
 
+    .hand.second-hand {
+      height: 3px;
+      background: gold;
+    }
+
+    .hand.hour-hand {
+      height: 9px;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .hand.hour-hand::after {
+      transform: translateX(-54%);
+      content: '';
+      width: 86%;
+      position: absolute;
+      top: 49%;
+      background: gold;
+      height: 1px;
+    }
+    
+    .hand.hour-hand::before {
+      content: '';
+      border-radius: 50%;
+      background: #FFF;
+      position: relative;
+      right: -140px;
+      top: -6.4px;
+      display: block;
+      width: 25px;
+      height: 25px;
+    }
+
+    .hand.min-hand {
+      border-radius: 6px;
+    }
+
     .hand {
       width:50%;
       height:6px;
-      background:black;
+      background:#FFF;
       position: absolute;
       top:50%;
+      /* clock styles*/
+      transform: rotate(90deg);
+      transform-origin: 100%;
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+
     }
 
   </style>
 
   <script>
+    const secondHand = document.querySelector('.second-hand');
+    const minHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
 
+  function setDate(){
+     const now = new Date(),
+           seconds = now.getSeconds(),
+           secondsDegrees = ((seconds / 60) * 360) + 90;
+
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+    const  mins = now.getMinutes(),
+           minsDegrees = ((mins / 60) * 360) + 90;
+
+    minHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+    const hours = now.getHours(),
+          hoursDegrees = ((hours / 60) * 360) + 90;
+
+    hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+  };
+
+  setInterval(setDate, 1000);
+  setDate();
 
   </script>
 </body>
