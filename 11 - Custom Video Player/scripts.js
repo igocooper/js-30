@@ -38,8 +38,6 @@ function scrub(e) {
     video.currentTime = scrubTime;
 }
 
-console.dir(video);
-
 
 // hook event listeners
 
