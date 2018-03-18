@@ -25,20 +25,30 @@
   }
 
   .one {
-    background: thistle;
+    background: #FECEA8;
   }
 
   .two {
-    background:mistyrose;
+    background: #FF847C;
   }
 
   .three {
-    background:coral;
+    background: #E84A5F;
   }
 </style>
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
+
+  function showClass(e){
+    console.log(this.classList.value);
+  }
+
+  divs.forEach(div => div.addEventListener('click', showClass, {
+    capture: true,
+    once: true
+  }));
 
 </script>
 </body>
